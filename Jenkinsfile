@@ -1,42 +1,45 @@
 pipeline {
     agent any
 
-    // Option 1: REMOVE environment block completely
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Sagar-12218728/docker.git'
+                // Checkout from the 'main' branch (fixing your error)
+                git branch: 'main', url: 'https://github.com/Sagar-12218728/docker.git'
             }
         }
         
         stage('Build') {
             steps {
+                // Example build commands (you can replace with actual build steps)
                 sh 'echo "Building the project..."'
-                sh 'make'
+                sh 'make'   // (make sure Makefile exists, or change this)
             }
         }
         
         stage('Test') {
             steps {
+                // Example test commands
                 sh 'echo "Running tests..."'
-                sh 'make test'
+                sh 'make test'   // (again, make sure you have test scripts, or change)
             }
         }
         
         stage('Deploy') {
             steps {
+                // Example deploy commands
                 sh 'echo "Deploying the project..."'
-                sh './deploy.sh'
+                sh './deploy.sh'  // (only if deploy.sh exists, otherwise replace)
             }
         }
     }
     
     post {
         success {
-            echo 'Build completed successfully!'
+            echo '✅ Build completed successfully!'
         }
         failure {
-            echo 'Build failed!'
+            echo '❌ Build failed!'
         }
     }
 }
