@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your source code from the repository
-                git 'https://github.com/Sagar-12218728/Docker_Project.git'
+                git 'https://github.com/Sagar-12218728/docker.git'
             }
         }
         
